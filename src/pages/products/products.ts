@@ -18,9 +18,11 @@ export class ProductsPage {
   search: string = ''
   groceries: any = {}
   fresh: any = {}
+  categories: string = ''
   constructor(public navCtrl: NavController, public navParams: NavParams, public productsProvider: ProductsProvider) {
     this.groceries = productsProvider.getGroceries()
     this.fresh = productsProvider.getFresh()
+    this.categories='groceries'
   }
 
   ionViewDidLoad() {
