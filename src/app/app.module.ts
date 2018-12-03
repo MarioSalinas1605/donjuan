@@ -14,6 +14,8 @@ import { InformationPage } from '../pages/information/information';
 import { ProductsPage } from '../pages/products/products';
 import { ShoppingCartPage } from '../pages/shopping-cart/shopping-cart';
 import { ProductInfoPage } from '../pages/product-info/product-info';
+import { ProductsProvider } from '../providers/products/products';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { ProductInfoPage } from '../pages/product-info/product-info';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -46,7 +49,8 @@ import { ProductInfoPage } from '../pages/product-info/product-info';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ProductsProvider
   ]
 })
 export class AppModule {}

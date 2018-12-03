@@ -29,27 +29,20 @@
 
   <div [ngSwitch]="categories">
     <ion-list *ngSwitchCase="'vegetables'">
-      <ion-item>
+      <ion-item *ngFor="let item of fresh">
         <ion-thumbnail item-start>
-          <img src="/assets/imgs/zanahoria.jpg">
+          <img src={{item.image}}>
         </ion-thumbnail>
-        <h2>Zanahoria</h2>
+        <h2>{{item.name}}</h2>
       </ion-item>
-      ...
     </ion-list>
 
     <ion-list *ngSwitchCase="'groceries'">
-      <ion-item>
+      <ion-item *ngFor="let item of groceries">
         <ion-thumbnail item-start>
-          <img src="/assets/imgs/coca.jpg">
+          <img src={{item.image}}>
         </ion-thumbnail>
-        <h2>Coca-cola</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="/assets/imgs/coca.jpg">
-        </ion-thumbnail>
-        <h2>Coca-cola2</h2>
+        <h2>{{item.name}}</h2>
       </ion-item>
     </ion-list>
   </div>
