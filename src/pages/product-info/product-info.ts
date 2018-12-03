@@ -14,8 +14,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'product-info.html',
 })
 export class ProductInfoPage {
-
+  item: any = {}
+  sizes: any = {}
+  size: string = ''
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+    this.item = navParams.get('item')
+    this.sizes = this.item.sizes
+    console.log(this.sizes);
   }
 
   ionViewDidLoad() {

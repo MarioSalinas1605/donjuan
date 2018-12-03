@@ -20,4 +20,58 @@
 
 <ion-content padding>
 
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-10 offset-1>
+        <h5>Opciones de tu producto:</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <h3>{{item.name}}</h3>
+      </ion-col>
+      <ion-col col-6>
+        <img src={{item.image}} alt="">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 offset-2>
+        <p>Tamaño:</p>
+      </ion-col>
+      <ion-col col-6>
+        <ion-list>
+          <ion-item>
+            <ion-label>Elegir</ion-label>
+            <ion-select [(ngModel)]="size">
+              <div *ngFor="let s of sizes">
+                <ion-option value={{s}}>{{s}}</ion-option>
+              </div>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 offset-2>
+        <p>Cantidad:</p>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-input type="number" placeholder="# de articulos"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row padding>
+      <ion-col col-6>
+        <button ion-button full>Agregar al carrito</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button full>Pagar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

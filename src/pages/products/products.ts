@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
+import { ProductInfoPage } from '../product-info/product-info';
+import { ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the ProductsPage page.
@@ -19,7 +21,7 @@ export class ProductsPage {
   groceries: any = {}
   fresh: any = {}
   categories: string = ''
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productsProvider: ProductsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public productsProvider: ProductsProvider, public modalCtrl: ModalController) {
     this.groceries = productsProvider.getGroceries()
     this.fresh = productsProvider.getFresh()
     this.categories='groceries'
@@ -27,6 +29,11 @@ export class ProductsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
+  }
+
+  presentModal(item) {
+    const modal = this.modalCtrl.create(ProductInfoPage, {item:item});
+    modal.present();
   }
 
 }

@@ -28,22 +28,28 @@
   </div>
 
   <div [ngSwitch]="categories">
+
     <ion-list *ngSwitchCase="'vegetables'">
-      <ion-item *ngFor="let item of fresh">
-        <ion-thumbnail item-start>
-          <img src={{item.image}}>
-        </ion-thumbnail>
-        <h2>{{item.name}}</h2>
-      </ion-item>
+      <div *ngFor="let item of fresh">
+        <ion-item (click)="presentModal(item)">
+          <ion-thumbnail item-start>
+            <img src={{item.image}}>
+          </ion-thumbnail>
+          <h2>{{item.name}}</h2>
+        </ion-item>
+      </div>
+
     </ion-list>
 
     <ion-list *ngSwitchCase="'groceries'">
-      <ion-item *ngFor="let item of groceries">
-        <ion-thumbnail item-start>
-          <img src={{item.image}}>
-        </ion-thumbnail>
-        <h2>{{item.name}}</h2>
-      </ion-item>
+      <div *ngFor="let item of groceries">
+        <ion-item (click)="presentModal(item)">
+          <ion-thumbnail item-start>
+            <img src={{item.image}}>
+          </ion-thumbnail>
+          <h2>{{item.name}}</h2>
+        </ion-item>
+      </div>
     </ion-list>
   </div>
 
