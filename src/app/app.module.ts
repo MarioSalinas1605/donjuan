@@ -16,6 +16,7 @@ import { ShoppingCartPage } from '../pages/shopping-cart/shopping-cart';
 import { ProductInfoPage } from '../pages/product-info/product-info';
 import { ProductsProvider } from '../providers/products/products';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

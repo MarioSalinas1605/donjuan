@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ProductInfoPage page.
@@ -17,10 +18,18 @@ export class ProductInfoPage {
   item: any = {}
   sizes: any = {}
   size: string = ''
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public viewCtrl: ViewController,
+    private storage: Storage) {
     this.item = navParams.get('item')
     this.sizes = this.item.sizes
-    console.log(this.sizes);
+    
+    storage.set('name', 'Max');
+    // Or to get a key/value pair
+    storage.get('name').then((val) => {
+      console.log('Your name is', val);
+    });
   }
 
   ionViewDidLoad() {
