@@ -18,18 +18,14 @@ export class ProductInfoPage {
   item: any = {}
   sizes: any = {}
   size: string = ''
+  quantity = 0
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private storage: Storage) {
     this.item = navParams.get('item')
     this.sizes = this.item.sizes
-    
-    storage.set('name', 'Max');
-    // Or to get a key/value pair
-    storage.get('name').then((val) => {
-      console.log('Your name is', val);
-    });
   }
 
   ionViewDidLoad() {
@@ -38,6 +34,15 @@ export class ProductInfoPage {
 
   dismiss() {
    this.viewCtrl.dismiss();
+ }
+
+ saveProduct(){
+   let obj: any = {name:this.item.name, size: this.size, quantity: this.quantity}
+   this.storage.set('product', obj);
+   // Or to get a key/value pair
+   this.storage.get('product').then((val) => {
+     console.log('Your product is:', val);
+   });
  }
 
 }
