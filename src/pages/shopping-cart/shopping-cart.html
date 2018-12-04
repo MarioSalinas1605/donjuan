@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title class="accent-color">shoppingCart</ion-title>
+    <ion-title class="accent-color">Carrito de Compras</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,13 +15,30 @@
 
 <ion-content padding>
   <ion-list>
-  <ion-item (click)="presentModal()">
-    <ion-avatar item-start>
-      <img src="/assets/imgs/coca.jpg">
-    </ion-avatar>
-    <h2>Coca-Cola</h2>
-    <p>Ugh. As if.</p>
-  </ion-item>
-</ion-list>
+    <ion-item (click)="presentModal()">
+      <ion-avatar item-start>
+        <img src="/assets/imgs/coca.jpg">
+      </ion-avatar>
+      <h2>Coca-Cola</h2>
+      <p>Ugh. As if.</p>
+    </ion-item>
+  </ion-list>
 
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>Finaliza tu cuenta</ion-title>
+    </ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 offset-6>
+          <button ion-button full>Comprar</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <h5>Total a pagar: </h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
 </ion-content>
