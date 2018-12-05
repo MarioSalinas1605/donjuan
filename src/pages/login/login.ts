@@ -14,8 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  operation: string = 'login';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.operation = 'login'
   }
 
   ionViewDidLoad() {
