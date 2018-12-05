@@ -17,7 +17,7 @@
   <ion-list>
     <ion-item *ngIf="operation === 'register'">
       <ion-label fixed>Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="nick"></ion-input>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Email</ion-label>
@@ -40,12 +40,12 @@
   <ion-grid padding>
     <ion-row>
       <ion-col col-10 offset-1>
-        <button ion-button full round *ngIf="operation == 'login'">Entrar</button>
+        <button ion-button full round *ngIf="operation == 'login'" (click)="loginin()">Entrar</button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-10 offset-1>
-        <button ion-button full round *ngIf="operation == 'register'">Registrarse</button>
+        <button ion-button full round *ngIf="operation == 'register'" (click)="register()">Registrarse</button>
       </ion-col>
     </ion-row>
   </ion-grid>
