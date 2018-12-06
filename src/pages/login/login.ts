@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { AlertController } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,21 +18,30 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
   operation: string = 'login';
-  name: string = 'name'
-  email: string = 'email'
-  password: string = 'password'
-  password2: string = 'password2'
+  name: string = ''
+  email: string = ''
+  password: string = ''
+  password2: string = ''
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private authenticationProvider: AuthenticationProvider, private alertCtrl: AlertController) {
+    private authenticationProvider: AuthenticationProvider,
+    private alertCtrl: AlertController) {
     this.operation = 'login'
+
+    this.authenticationProvider.getStatus().subscribe(
+      (session)=>{
+        if (session) {
+            this.navCtrl.setRoot(TabsPage)
+        }
+      }
+    )
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  loginin(){
+  login(){
     let alert = this.alertCtrl.create({
       title: 'Perfecto!',
       subTitle: 'Te has loggeado de manera correcta',
@@ -48,6 +58,7 @@ export class LoginPage {
       (data)=>{
         alert.present();
         console.log(data)
+        this.navCtrl.setRoot(TabsPage);
       }
     ).catch(
       (error)=>{
@@ -69,6 +80,16 @@ export class LoginPage {
       subTitle: 'Hubo un error',
       buttons: ['Ok']
     });
+
+    let person = {
+      name: this.name,
+      email: this.email,
+      address: ''
+    }
+
+    if (this.password == this.password2) {
+        console.log(person)
+    }
 
     this.authenticationProvider.registerWithEmail(this.email, this.password)
     .then(
