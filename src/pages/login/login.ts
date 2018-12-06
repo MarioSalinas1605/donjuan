@@ -28,13 +28,7 @@ export class LoginPage {
     private alertCtrl: AlertController) {
     this.operation = 'login'
 
-    this.authenticationProvider.getStatus().subscribe(
-      (session)=>{
-        if (session) {
-            this.navCtrl.setRoot(TabsPage)
-        }
-      }
-    )
+
   }
 
   ionViewDidLoad() {

@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { CoverPage } from '../pages/cover/cover';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     ProductsPage,
     ShoppingCartPage,
     ProductInfoPage,
-    LoginPage
+    LoginPage,
+    CoverPage
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ export const firebaseConfig = {
     ProductsPage,
     ShoppingCartPage,
     ProductInfoPage,
-    LoginPage
+    LoginPage,
+    CoverPage
   ],
   providers: [
     StatusBar,
