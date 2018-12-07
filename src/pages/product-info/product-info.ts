@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the ProductInfoPage page.
@@ -23,7 +24,8 @@ export class ProductInfoPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    private storage: Storage) {
+    private storage: Storage,
+    private alertCtrl: AlertController) {
     this.item = navParams.get('item')
     this.sizes = this.item.sizes
   }
@@ -37,12 +39,36 @@ export class ProductInfoPage {
  }
 
  saveProduct(){
-   let obj: any = {name:this.item.name, size: this.size, quantity: this.quantity}
-   this.storage.set('product', obj);
-   // Or to get a key/value pair
-   this.storage.get('product').then((val) => {
-     console.log('Your product is:', val);
-   });
+   let alert = this.alertCtrl.create({
+    title: 'Listo...',
+    subTitle: 'Agregamos el producto a tu carrito de compras',
+    buttons: ['ok']
+  });
+   this.storage.get('productList').then((val) => {
+     if (val) {
+         let coca: any = {name:'coca', size:'2lt', quantity:'2'}
+         val.list.push(coca)
+         this.storage.set('productList', val);
+         console.log(val)
+         alert.present();
+     }else{
+       let obj: any = {status: 'pending', list:[{
+         name: this.item.name,
+         size: this.size,
+         quantity: this.quantity}]
+       }
+       this.storage.set('productList', obj);
+       console.log(obj)
+       alert.present();
+     }
+   })
+ }
+
+ testDelete(){
+   this.storage.remove('productList').then(()=>{
+     console.log("Elements deleted")
+   })
+
  }
 
 }
