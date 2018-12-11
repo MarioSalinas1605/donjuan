@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ViewController, App, Tabs } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 
@@ -25,7 +25,8 @@ export class ProductInfoPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private storage: Storage,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private app: App) {
     this.item = navParams.get('item')
     this.sizes = this.item.sizes
   }
@@ -42,7 +43,14 @@ export class ProductInfoPage {
    let alert = this.alertCtrl.create({
     title: 'Listo...',
     subTitle: 'Agregamos el producto a tu carrito de compras',
-    buttons: ['ok']
+    buttons: [{
+        text: 'Ok',
+        role: 'ok',
+        handler: () => {
+          console.log('Ok clicked');
+          this.viewCtrl.dismiss();
+        }
+      }]
   });
    this.storage.get('productList').then((val) => {
      if (val) {
@@ -64,11 +72,31 @@ export class ProductInfoPage {
    })
  }
 
- testDelete(){
-   this.storage.remove('productList').then(()=>{
-     console.log("Elements deleted")
-   })
+ pay(){
+   // this.storage.remove('productList').then(()=>{
+   //   console.log("Elements deleted")
+   // })
 
+   this.storage.get('productList').then((val) => {
+     if (val) {
+         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity}
+         val.list.push(coca)
+         this.storage.set('productList', val);
+         console.log(val)
+     }else{
+       let obj: any = {status: 'pending', list:[{
+         name: this.item.name,
+         size: this.size,
+         quantity: this.quantity}]
+       }
+       this.storage.set('productList', obj);
+       console.log(obj)
+     }
+   })
+   const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+   tabsNav.select(1);
+   this.navCtrl.pop();
  }
+
 
 }

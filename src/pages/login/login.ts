@@ -38,7 +38,7 @@ export class LoginPage {
   login(){
     let alert = this.alertCtrl.create({
       title: 'Perfecto!',
-      subTitle: 'Te has loggeado de manera correcta',
+      subTitle: 'Has ingresado a tu cuenta',
       buttons: ['Ok']
     });
     let alertError = this.alertCtrl.create({

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { ProductInfoPage } from '../product-info/product-info';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ShoppingCartPage page.
@@ -17,7 +18,10 @@ import { ProductInfoPage } from '../product-info/product-info';
 })
 export class ShoppingCartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -29,4 +33,9 @@ export class ShoppingCartPage {
     modal.present();
   }
 
+  testBorrar(){
+    this.storage.remove('productList').then(()=>{
+      console.log("Elements deleted")
+    })
+  }
 }
