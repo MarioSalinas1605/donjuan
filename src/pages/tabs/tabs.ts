@@ -12,9 +12,9 @@ export class TabsPage {
 
   @ViewChild('myTabs') tabRef: Tabs;
 
-  tab1Root = ProductsPage;
-  tab2Root = ShoppingCartPage;
-  tab3Root = InformationPage;
+  tab1Root: any = ProductsPage;
+  tab2Root: any = ShoppingCartPage;
+  tab3Root: any = InformationPage;
 
   constructor() {
 

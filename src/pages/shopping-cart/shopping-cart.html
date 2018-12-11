@@ -15,13 +15,15 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item (click)="presentModal()">
-      <ion-avatar item-start>
-        <img src="/assets/imgs/coca.jpg">
-      </ion-avatar>
-      <h2>Coca-Cola</h2>
-      <p>Ugh. As if.</p>
-    </ion-item>
+    <div *ngFor="let item of items">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src={{item.image}}>
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>Cantidad: {{item.quantity}}</p>
+      </ion-item>
+    </div>
   </ion-list>
 
   <ion-footer>

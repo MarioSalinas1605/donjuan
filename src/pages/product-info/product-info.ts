@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, App, Tabs } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, App, Tabs, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { AlertController } from 'ionic-angular';
 
@@ -19,16 +19,19 @@ export class ProductInfoPage {
   item: any = {}
   sizes: any = {}
   size: string = ''
-  quantity = 0
+  image: string = ''
+  quantity = 1
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private storage: Storage,
     private alertCtrl: AlertController,
-    private app: App) {
+    private app: App,
+    private toastCtrl: ToastController) {
     this.item = navParams.get('item')
     this.sizes = this.item.sizes
+    this.image = this.item.image
   }
 
   ionViewDidLoad() {
@@ -40,35 +43,31 @@ export class ProductInfoPage {
  }
 
  saveProduct(){
-   let alert = this.alertCtrl.create({
-    title: 'Listo...',
-    subTitle: 'Agregamos el producto a tu carrito de compras',
-    buttons: [{
-        text: 'Ok',
-        role: 'ok',
-        handler: () => {
-          console.log('Ok clicked');
-          this.viewCtrl.dismiss();
-        }
-      }]
-  });
+   let toast = this.toastCtrl.create({
+     message: 'Producto agregado',
+     duration: 1500,
+     position: 'top'
+   });
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name:'coca', size:'2lt', quantity:'2'}
+         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image}
          val.list.push(coca)
          this.storage.set('productList', val);
-         console.log(val)
-         alert.present();
+         // console.log(val)
+         // alert.present();
      }else{
        let obj: any = {status: 'pending', list:[{
          name: this.item.name,
          size: this.size,
-         quantity: this.quantity}]
+         quantity: this.quantity,
+         image: this.image}]
        }
        this.storage.set('productList', obj);
-       console.log(obj)
-       alert.present();
+       // console.log(obj)
+       // alert.present();
      }
+     toast.present();
+     this.viewCtrl.dismiss();
    })
  }
 
@@ -79,23 +78,28 @@ export class ProductInfoPage {
 
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity}
+         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image}
          val.list.push(coca)
          this.storage.set('productList', val);
          console.log(val)
+         const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+         tabsNav.select(1);
+         this.navCtrl.pop();
      }else{
        let obj: any = {status: 'pending', list:[{
          name: this.item.name,
          size: this.size,
-         quantity: this.quantity}]
+         quantity: this.quantity,
+         image: this.image}]
        }
        this.storage.set('productList', obj);
        console.log(obj)
+       const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+       tabsNav.select(1);
+       this.navCtrl.pop();
      }
    })
-   const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
-   tabsNav.select(1);
-   this.navCtrl.pop();
+
  }
 
 

@@ -17,11 +17,12 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'shopping-cart.html',
 })
 export class ShoppingCartPage {
-
+  items: any = []
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private storage: Storage) {
+
   }
 
   ionViewDidLoad() {
@@ -36,6 +37,17 @@ export class ShoppingCartPage {
   testBorrar(){
     this.storage.remove('productList').then(()=>{
       console.log("Elements deleted")
+    })
+    this.items = []
+  }
+
+  ionViewWillEnter() {
+    console.log("Switch to ShoppingCartPage");
+    this.storage.get('productList').then((val) => {
+      if (val) {
+          this.items = val.list
+      }
+      console.log(this.items)
     })
   }
 }
