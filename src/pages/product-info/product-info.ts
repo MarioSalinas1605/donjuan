@@ -50,7 +50,7 @@ export class ProductInfoPage {
    });
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image}
+         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image, sizes: this.sizes}
          val.list.push(coca)
          this.storage.set('productList', val);
          // console.log(val)
@@ -60,7 +60,8 @@ export class ProductInfoPage {
          name: this.item.name,
          size: this.size,
          quantity: this.quantity,
-         image: this.image}]
+         image: this.image,
+         sizes: this.sizes}]
        }
        this.storage.set('productList', obj);
        // console.log(obj)
@@ -78,7 +79,7 @@ export class ProductInfoPage {
 
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image}
+         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image, sizes: this.sizes}
          val.list.push(coca)
          this.storage.set('productList', val);
          console.log(val)
@@ -90,7 +91,8 @@ export class ProductInfoPage {
          name: this.item.name,
          size: this.size,
          quantity: this.quantity,
-         image: this.image}]
+         image: this.image,
+         sizes: this.sizes}]
        }
        this.storage.set('productList', obj);
        console.log(obj)

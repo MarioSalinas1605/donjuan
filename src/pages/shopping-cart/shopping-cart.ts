@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
-import { ProductInfoPage } from '../product-info/product-info';
 import { Storage } from '@ionic/storage';
+import { ProductModifPage } from '../product-modif/product-modif';
 
 /**
  * Generated class for the ShoppingCartPage page.
@@ -29,8 +29,8 @@ export class ShoppingCartPage {
     console.log('ionViewDidLoad ShoppingCartPage');
   }
 
-  presentModal() {
-    const modal = this.modalCtrl.create(ProductInfoPage);
+  presentModal(item) {
+    const modal = this.modalCtrl.create(ProductModifPage, {item:item});
     modal.present();
   }
 
@@ -50,4 +50,5 @@ export class ShoppingCartPage {
       console.log(this.items)
     })
   }
+
 }

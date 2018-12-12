@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <div *ngFor="let item of items">
-      <ion-item>
+      <ion-item (click)="presentModal(item)">
         <ion-avatar item-start>
           <img src={{item.image}}>
         </ion-avatar>
