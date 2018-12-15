@@ -30,7 +30,7 @@ export class ShoppingCartPage {
   }
 
   presentModal(item) {
-    const modal = this.modalCtrl.create(ProductModifPage, {item:item});
+    const modal = this.modalCtrl.create(ProductModifPage, {item:item, "parentPage": this});
     modal.present();
   }
 
@@ -51,4 +51,12 @@ export class ShoppingCartPage {
     })
   }
 
+  refreshList(){
+    this.storage.get('productList').then((val) => {
+      if (val) {
+          this.items = val.list
+      }
+      console.log(this.items)
+    })
+  }
 }

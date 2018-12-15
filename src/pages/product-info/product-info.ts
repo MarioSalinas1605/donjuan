@@ -50,13 +50,21 @@ export class ProductInfoPage {
    });
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image, sizes: this.sizes}
+         let coca: any = {
+           id: Date.now(),
+           name: this.item.name,
+           size: this.size, quantity:
+           this.quantity,
+           image: this.image,
+           sizes: this.sizes
+         }
          val.list.push(coca)
          this.storage.set('productList', val);
          // console.log(val)
          // alert.present();
      }else{
        let obj: any = {status: 'pending', list:[{
+         id: Date.now(),
          name: this.item.name,
          size: this.size,
          quantity: this.quantity,
@@ -79,7 +87,14 @@ export class ProductInfoPage {
 
    this.storage.get('productList').then((val) => {
      if (val) {
-         let coca: any = {name: this.item.name, size: this.size, quantity: this.quantity, image: this.image, sizes: this.sizes}
+         let coca: any = {
+           id: Date.now(),
+           name: this.item.name,
+           size: this.size,
+           quantity: this.quantity,
+           image: this.image,
+           sizes: this.sizes
+         }
          val.list.push(coca)
          this.storage.set('productList', val);
          console.log(val)
@@ -88,6 +103,7 @@ export class ProductInfoPage {
          this.navCtrl.pop();
      }else{
        let obj: any = {status: 'pending', list:[{
+         id: Date.now(),
          name: this.item.name,
          size: this.size,
          quantity: this.quantity,
