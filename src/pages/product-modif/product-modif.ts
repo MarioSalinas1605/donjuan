@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, App, Tabs } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the ProductModifPage page.
@@ -26,7 +27,8 @@ export class ProductModifPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     private storage: Storage,
-    private app: App) {
+    private app: App,
+    public toastCtrl: ToastController) {
       this.item = navParams.get('item')
       this.sizes = this.item.sizes
       this.image = this.item.image
@@ -59,6 +61,12 @@ export class ProductModifPage {
       console.log(val)
       this.storage.remove('productList').then(()=>{
         console.log("Elements deleted")
+        const toast = this.toastCtrl.create({
+          message: 'Producto eliminado',
+          position: 'top',
+          duration: 1500
+        });
+        toast.present();
       })
       this.storage.set('productList', val);
 
@@ -88,6 +96,12 @@ export class ProductModifPage {
       console.log(val)
 
       this.storage.set('productList', val);
+      const toast = this.toastCtrl.create({
+        message: 'Cambios guardados',
+        position: 'top',
+        duration: 1500
+      });
+      toast.present();
 
       this.navParams.get("parentPage").refreshList();
       this.navCtrl.pop();
