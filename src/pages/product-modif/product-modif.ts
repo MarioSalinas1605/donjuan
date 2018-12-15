@@ -61,11 +61,37 @@ export class ProductModifPage {
         console.log("Elements deleted")
       })
       this.storage.set('productList', val);
-      
+
       this.navParams.get("parentPage").refreshList();
       this.navCtrl.pop();
     })
+  }
 
+  modifyItem(){
+    let newList: any = []
+    this.storage.get('productList').then((val) => {
+      console.log(val)
+      // console.log(this.id)
+
+      let list = val.list
+      for (let i = 0; i < list.length; i++) {
+        if(list[i].id == this.id){
+          console.log('new size:', this.size)
+          list[i].size = this.size
+          list[i].quantity = this.quantity
+          newList.push(list[i])
+        }else{
+          newList.push(list[i])
+        }
+      }
+      val.list = newList
+      console.log(val)
+
+      this.storage.set('productList', val);
+
+      this.navParams.get("parentPage").refreshList();
+      this.navCtrl.pop();
+    })
   }
 
 }
