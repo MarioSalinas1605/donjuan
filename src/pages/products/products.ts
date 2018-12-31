@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductsProvider } from '../../providers/products/products';
 import { ProductInfoPage } from '../product-info/product-info';
+import { NewProductPage } from '../new-product/new-product';
 import { ModalController } from 'ionic-angular';
 
 /**
@@ -33,6 +34,11 @@ export class ProductsPage {
 
   presentModal(item) {
     const modal = this.modalCtrl.create(ProductInfoPage, {item:item});
+    modal.present();
+  }
+
+  modalNewProduct() {
+    const modal = this.modalCtrl.create(NewProductPage);
     modal.present();
   }
 

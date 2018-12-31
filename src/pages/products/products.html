@@ -54,3 +54,19 @@
   </div>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>Pide un producto...</ion-title>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <p>Si no encuentras tu producto presiona el boton para generarlo</p>
+      </ion-col>
+      <ion-col col-6 >
+        <button ion-button full (click)="modalNewProduct()">Pedir</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

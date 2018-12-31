@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 /*
   Generated class for the ProductsProvider provider.
@@ -22,12 +23,13 @@ export class ProductsProvider {
 
   ]
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public afDB: AngularFireDatabase) {
     console.log('Hello ProductsProvider Provider');
   }
 
   getGroceries(){
     return this.products.filter((product)=>{ return product.category == 'grocery' })
+    // return this.afDB.list('/products/grocery')
   }
   getFresh(){
     return this.products.filter((product)=>{ return product.category == 'fresh' })

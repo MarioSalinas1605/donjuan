@@ -24,6 +24,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { ProductModifPage } from '../pages/product-modif/product-modif';
+import { NewProductPage } from '../pages/new-product/new-product';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCMjs-827aomemKULQ5uFXuR_w06Higk0s",
@@ -47,7 +48,8 @@ export const firebaseConfig = {
     ProductInfoPage,
     LoginPage,
     CoverPage,
-    ProductModifPage
+    ProductModifPage,
+    NewProductPage
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ export const firebaseConfig = {
     ProductInfoPage,
     LoginPage,
     CoverPage,
-    ProductModifPage
+    ProductModifPage,
+    NewProductPage
   ],
   providers: [
     StatusBar,

@@ -13,7 +13,7 @@ export class AuthenticationProvider {
 
   constructor(public http: HttpClient,
               private angularFireAuth: AngularFireAuth) {
-    console.log('Hello AuthenticationProvider Provider');
+    console.log('Hello AuthenticationProvider');
   }
 
   loginWithEmail(email: string, password:string){
