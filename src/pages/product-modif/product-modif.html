@@ -41,8 +41,8 @@
       <ion-col col-3 offset-1>
         <p>Tamaño:</p>
       </ion-col>
-      <ion-col col-7>
-        <ion-list>
+      <ion-col col-7 *ngIf="show">
+        <ion-list >
           <ion-item>
             <ion-label>Elegir</ion-label>
             <ion-select [(ngModel)]="size">
@@ -52,6 +52,9 @@
             </ion-select>
           </ion-item>
         </ion-list>
+      </ion-col>
+      <ion-col col-7 *ngIf="!show">
+        <ion-input type="text" [(ngModel)]="size"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>

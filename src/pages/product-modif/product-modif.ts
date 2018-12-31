@@ -22,6 +22,7 @@ export class ProductModifPage {
   size: string = ''
   image: string = ''
   quantity = 1
+  show: boolean = false
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -35,6 +36,10 @@ export class ProductModifPage {
       this.size = this.item.size
       this.quantity = this.item.quantity
       this.id = this.item.id
+      console.log(this.size)
+      if (this.item.sizes) {
+          this.show = true
+      }
   }
 
   ionViewDidLoad() {
@@ -106,6 +111,14 @@ export class ProductModifPage {
       this.navParams.get("parentPage").refreshList();
       this.navCtrl.pop();
     })
+  }
+
+  showSizes(){
+    console.log('Showing sizes')
+    for (let s of this.sizes) {
+        console.log(s)
+    }
+    return true
   }
 
 }
