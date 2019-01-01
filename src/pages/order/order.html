@@ -1,0 +1,47 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title class="accent-color">Pedido</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <p>Mapa de GoogleMaps</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-list>
+          <ion-item>
+            <ion-label>Método de pago</ion-label>
+            <ion-select [(ngModel)]="payMode">
+              <ion-option value="cash">Efectivo</ion-option>
+              <ion-option value="paypal">Paypal</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 offset-6>
+          <button ion-button full (click)="goToOrder()">Enviar orden</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
+</ion-content>

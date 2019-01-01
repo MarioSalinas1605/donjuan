@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ProductModifPage } from '../product-modif/product-modif';
+import { OrderPage } from '../order/order';
 
 /**
  * Generated class for the ShoppingCartPage page.
@@ -58,5 +59,8 @@ export class ShoppingCartPage {
       }
       console.log(this.items)
     })
+  }
+  goToOrder(){
+    this.navCtrl.push(OrderPage)
   }
 }
