@@ -10,6 +10,8 @@ import {
   Marker,
   Environment
 } from '@ionic-native/google-maps';
+import { OrderProvider } from '../../providers/order/order';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the OrderPage page.
@@ -28,7 +30,10 @@ export class OrderPage {
   map: GoogleMap;
   markerlatlong: any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public orderProvider: OrderProvider,
+    private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -71,6 +76,7 @@ export class OrderPage {
     this.map.getMyLocation()
     .then(response => {
       console.log(response.latLng)
+      this.markerlatlong = response.latLng
       this.map.moveCamera({
         target: response.latLng
       });
@@ -92,6 +98,22 @@ export class OrderPage {
     .catch(error =>{
       console.log(error);
     });
+  }
+  goToOrder(){
+    let order
+    this.storage.get('productList').then((val) => {
+      if (val) {
+          this.storage.get('user').then((user) => {
+            console.log(this.markerlatlong)
+            order = val
+            order.id = Date.now()
+            order.user = user
+            order.markerlatlong = this.markerlatlong
+            console.log(order)
+            this.orderProvider.add(order)
+          })
+      }
+    })
   }
 
 }
