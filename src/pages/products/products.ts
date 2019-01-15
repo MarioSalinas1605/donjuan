@@ -32,8 +32,8 @@ export class ProductsPage {
     console.log('ionViewDidLoad ProductsPage');
   }
 
-  presentModal(item) {
-    const modal = this.modalCtrl.create(ProductInfoPage, {item:item});
+  presentModal(item, category) {
+    const modal = this.modalCtrl.create(ProductInfoPage, {item:item, category:category});
     modal.present();
   }
 

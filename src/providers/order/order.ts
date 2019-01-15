@@ -16,7 +16,7 @@ export class OrderProvider {
   }
 
   add(order) {
-    return this.angularFireDatabase.object('orders/' + order.user.uid + '/' + order.id).set(order);
+    return this.angularFireDatabase.object('orders/' +  '/' + order.id).set(order);
   }
 
 }

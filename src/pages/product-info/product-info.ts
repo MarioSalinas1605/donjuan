@@ -21,6 +21,7 @@ export class ProductInfoPage {
   size: string = ''
   image: string = ''
   quantity = 1
+  category: string
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,6 +31,7 @@ export class ProductInfoPage {
     private app: App,
     private toastCtrl: ToastController) {
     this.item = navParams.get('item')
+    this.category = navParams.get('category')
     this.sizes = this.item.sizes
     this.image = this.item.image
   }
@@ -56,7 +58,8 @@ export class ProductInfoPage {
            size: this.size, quantity:
            this.quantity,
            image: this.image,
-           sizes: this.sizes
+           sizes: this.sizes,
+           category: this.category
          }
          val.list.push(coca)
          this.storage.set('productList', val);
@@ -69,7 +72,8 @@ export class ProductInfoPage {
          size: this.size,
          quantity: this.quantity,
          image: this.image,
-         sizes: this.sizes}]
+         sizes: this.sizes,
+         category: this.category}]
        }
        this.storage.set('productList', obj);
        // console.log(obj)
@@ -93,7 +97,8 @@ export class ProductInfoPage {
            size: this.size,
            quantity: this.quantity,
            image: this.image,
-           sizes: this.sizes
+           sizes: this.sizes,
+           category: this.category
          }
          val.list.push(coca)
          this.storage.set('productList', val);
@@ -108,7 +113,8 @@ export class ProductInfoPage {
          size: this.size,
          quantity: this.quantity,
          image: this.image,
-         sizes: this.sizes}]
+         sizes: this.sizes,
+         category: this.category}]
        }
        this.storage.set('productList', obj);
        console.log(obj)
