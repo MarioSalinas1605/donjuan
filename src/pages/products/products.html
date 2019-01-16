@@ -31,7 +31,7 @@
 
     <ion-list *ngSwitchCase="'vegetables'">
       <div *ngFor="let item of fresh">
-        <ion-item (click)="presentModal(item, 'vegetables')">
+        <ion-item (click)="presentModal(item, 'leaf')">
           <ion-thumbnail item-start>
             <img src={{item.image}}>
           </ion-thumbnail>
@@ -43,7 +43,7 @@
 
     <ion-list *ngSwitchCase="'groceries'">
       <div *ngFor="let item of groceries">
-        <ion-item (click)="presentModal(item, 'groceries')">
+        <ion-item (click)="presentModal(item, 'basket')">
           <ion-thumbnail item-start>
             <img src={{item.image}}>
           </ion-thumbnail>

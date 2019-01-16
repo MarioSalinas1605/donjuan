@@ -48,7 +48,8 @@ export class NewProductPage {
            name: this.name,
            size: this.size,
            quantity: this.quantity,
-           image: "../../assets/imgs/abarrotes.jpg"
+           image: "../../assets/imgs/abarrotes.jpg",
+           category: 'basket'
          }
          val.list.push(item)
          this.storage.set('productList', val);
@@ -60,7 +61,9 @@ export class NewProductPage {
          name: this.name,
          size: this.size,
          quantity: this.quantity,
-         image: "../../assets/imgs/abarrotes.jpg"}]
+         image: "../../assets/imgs/abarrotes.jpg",
+         category: 'basket'
+       }]
        }
        this.storage.set('productList', obj);
        // console.log(obj)
@@ -83,7 +86,8 @@ export class NewProductPage {
            name: this.name,
            size: this.size,
            quantity: this.quantity,
-           image: "../../assets/imgs/abarrotes.jpg"
+           image: "../../assets/imgs/abarrotes.jpg",
+           category: 'basket'
          }
          val.list.push(coca)
          this.storage.set('productList', val);
@@ -97,7 +101,9 @@ export class NewProductPage {
          name: this.name,
          size: this.size,
          quantity: this.quantity,
-         image: "../../assets/imgs/abarrotes.jpg"}]
+         image: "../../assets/imgs/abarrotes.jpg",
+         category: 'basket'
+       }]
        }
        this.storage.set('productList', obj);
        console.log(obj)
