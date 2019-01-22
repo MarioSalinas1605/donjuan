@@ -119,25 +119,23 @@ export class OrderPage {
             console.log(order)
             this.orderProvider.add(order)
             toast.present();
+
+            let orderStatus: any = {
+              status: true,
+              oid: order.id
+            }
+            console.log(orderStatus)
+            this.storage.remove('productList').then(()=>{
+              console.log("productList deleted")
+            })
+            this.storage.set('order', orderStatus);
+            // const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+            // tabsNav.select(1);
+            this.navCtrl.pop();
           })
       }
     })
-    let orderStatus: any = {
-      status: true
-    }
-    this.storage.remove('productList').then(()=>{
-      console.log("productList deleted")
-    })
-    this.storage.get('productList').then((val)=>{
-      console.log("Productos eliminados!")
-      if(val){
-        console.log(val)
-      }
-    })
-    this.storage.set('order', orderStatus);
-    // const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
-    // tabsNav.select(1);
-    this.navCtrl.pop();
+
   }
 
 }

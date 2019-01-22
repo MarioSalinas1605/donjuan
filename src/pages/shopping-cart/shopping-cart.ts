@@ -20,6 +20,7 @@ import { OrderPage } from '../order/order';
 export class ShoppingCartPage {
   items: any = []
   statusOrder = false
+  orderid
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -56,6 +57,7 @@ export class ShoppingCartPage {
     this.storage.get('order').then((val)=> {
       if (val) {
         this.statusOrder = val.status;
+        this.orderid = val.oid;
         if(this.statusOrder){
           console.log("Se tiene una orden en proceso")
         }
@@ -75,6 +77,7 @@ export class ShoppingCartPage {
     this.navCtrl.push(OrderPage)
   }
   stopSearch(){
+    console.log(this.orderid)
     let orderStatus: any = {
       status: false
     }
