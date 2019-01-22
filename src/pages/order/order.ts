@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, App, Tabs } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -33,6 +33,8 @@ export class OrderPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public orderProvider: OrderProvider,
+    private toastCtrl: ToastController,
+    private app: App,
     private storage: Storage) {
   }
 
@@ -100,6 +102,11 @@ export class OrderPage {
     });
   }
   goToOrder(){
+    let toast = this.toastCtrl.create({
+      message: 'Orden Realizada! :)',
+      duration: 1500,
+      position: 'top'
+    });
     let order
     this.storage.get('productList').then((val) => {
       if (val) {
@@ -111,9 +118,26 @@ export class OrderPage {
             order.markerlatlong = this.markerlatlong
             console.log(order)
             this.orderProvider.add(order)
+            toast.present();
           })
       }
     })
+    let orderStatus: any = {
+      status: true
+    }
+    this.storage.remove('productList').then(()=>{
+      console.log("productList deleted")
+    })
+    this.storage.get('productList').then((val)=>{
+      console.log("Productos eliminados!")
+      if(val){
+        console.log(val)
+      }
+    })
+    this.storage.set('order', orderStatus);
+    // const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+    // tabsNav.select(1);
+    this.navCtrl.pop();
   }
 
 }

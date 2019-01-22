@@ -17,17 +17,12 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <p>Mapa de GoogleMaps</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
         <ion-list>
           <ion-item>
             <ion-label>Método de pago</ion-label>
             <ion-select [(ngModel)]="payMode">
               <ion-option value="cash">Efectivo</ion-option>
-              <ion-option value="paypal">Paypal</ion-option>
+              <ion-option value="paypal">Paypal (Próximamente)</ion-option>
             </ion-select>
           </ion-item>
         </ion-list>
@@ -36,7 +31,7 @@
   </ion-grid>
 
   <div id="map_canvas"></div>
-  
+
   <ion-footer>
     <ion-grid>
       <ion-row>

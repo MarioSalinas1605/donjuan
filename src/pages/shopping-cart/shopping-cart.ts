@@ -19,6 +19,7 @@ import { OrderPage } from '../order/order';
 })
 export class ShoppingCartPage {
   items: any = []
+  statusOrder = false
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -47,8 +48,18 @@ export class ShoppingCartPage {
     this.storage.get('productList').then((val) => {
       if (val) {
           this.items = val.list
+          console.log(this.items)
+      }else{
+        this.items=[]
       }
-      console.log(this.items)
+    })
+    this.storage.get('order').then((val)=> {
+      if (val) {
+        this.statusOrder = val.status;
+        if(this.statusOrder){
+          console.log("Se tiene una orden en proceso")
+        }
+      }
     })
   }
 
@@ -62,5 +73,13 @@ export class ShoppingCartPage {
   }
   goToOrder(){
     this.navCtrl.push(OrderPage)
+  }
+  stopSearch(){
+    let orderStatus: any = {
+      status: false
+    }
+    this.statusOrder = false;
+    this.storage.set('order', orderStatus);
+    console.log("Seach stopped")
   }
 }
