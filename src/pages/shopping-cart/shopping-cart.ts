@@ -22,7 +22,8 @@ export class ShoppingCartPage {
   items: any = []
   statusOrder = false
   orderid
-  anwerData: any
+  answerData: any
+  answerCheapest: any
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -89,18 +90,36 @@ export class ShoppingCartPage {
     }
     this.statusOrder = false;
     this.storage.set('order', orderStatus);
-    console.log("Seach stopped")
+    console.log("Search stopped")
+    this.getAnswers()
   }
   getAnswers(){
     console.log(`Searching order: ${this.orderid}`)
     this.orderProvider.getList(this.orderid).valueChanges().subscribe((data)=>{
       console.log(data)
-      this.anwerData = data
-      // this.searchCheapest()
+      this.answerData = data
+      if(this.answerData.answers){
+        this.searchCheapest();
+      }
     })
   }
   searchCheapest(){
-    console.log('Searching cheapest with:')
-    console.log(this.anwerData)
+    // console.log('Searching cheapest with:')
+    // console.log(this.answerData.answers)
+    for (let answer in this.answerData.answers){
+      if(!this.answerCheapest){
+        this.answerCheapest=this.answerData.answers[answer]
+        // console.log('firs cheap')
+        // console.log(this.answerCheapest)
+      }else{
+        if (this.answerData.answers[answer].totalPrice < this.answerCheapest.totalPrice) {
+            this.answerCheapest = this.answerData.answers[answer]
+            // console.log(`New cheapest:`)
+            // console.log(this.answerCheapest)
+        }
+      }
+    }
+    console.log('The cheapest is: ')
+    console.log(this.answerCheapest)
   }
 }
