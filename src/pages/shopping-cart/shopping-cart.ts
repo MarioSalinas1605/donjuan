@@ -24,6 +24,7 @@ export class ShoppingCartPage {
   orderid
   answerData: any
   answerCheapest: any
+  answerClosest: any
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -100,6 +101,7 @@ export class ShoppingCartPage {
       this.answerData = data
       if(this.answerData.answers){
         this.searchCheapest();
+        this.searchClosest()
       }
     })
   }
@@ -121,5 +123,18 @@ export class ShoppingCartPage {
     }
     console.log('The cheapest is: ')
     console.log(this.answerCheapest)
+  }
+  searchClosest(){
+    for (let answer in this.answerData.answers){
+      if(!this.answerClosest){
+        this.answerClosest=this.answerData.answers[answer]
+      }else{
+        if (this.answerData.answers[answer].distance < this.answerClosest.distance) {
+            this.answerClosest = this.answerData.answers[answer]
+        }
+      }
+    }
+    console.log('The closest is: ')
+    console.log(this.answerClosest)
   }
 }
