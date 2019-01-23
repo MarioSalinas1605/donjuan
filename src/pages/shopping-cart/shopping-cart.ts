@@ -4,6 +4,7 @@ import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ProductModifPage } from '../product-modif/product-modif';
 import { OrderPage } from '../order/order';
+import { OrderProvider } from '../../providers/order/order';
 
 /**
  * Generated class for the ShoppingCartPage page.
@@ -21,9 +22,11 @@ export class ShoppingCartPage {
   items: any = []
   statusOrder = false
   orderid
+  anwerData: any
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    public orderProvider: OrderProvider,
     private storage: Storage) {
 
   }
@@ -60,6 +63,9 @@ export class ShoppingCartPage {
         this.orderid = val.oid;
         if(this.statusOrder){
           console.log("Se tiene una orden en proceso")
+          setTimeout(() => {
+              this.getAnswers()
+          }, 5000);
         }
       }
     })
@@ -84,5 +90,17 @@ export class ShoppingCartPage {
     this.statusOrder = false;
     this.storage.set('order', orderStatus);
     console.log("Seach stopped")
+  }
+  getAnswers(){
+    console.log(`Searching order: ${this.orderid}`)
+    this.orderProvider.getList(this.orderid).valueChanges().subscribe((data)=>{
+      console.log(data)
+      this.anwerData = data
+      // this.searchCheapest()
+    })
+  }
+  searchCheapest(){
+    console.log('Searching cheapest with:')
+    console.log(this.anwerData)
   }
 }

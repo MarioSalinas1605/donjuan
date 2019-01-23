@@ -20,7 +20,7 @@ export class OrderProvider {
   }
 
   getList(orderId) {
-    return this.angularFireDatabase.list('orders/'+orderId);
+    return this.angularFireDatabase.object('orders/'+orderId);
   }
 
 }
