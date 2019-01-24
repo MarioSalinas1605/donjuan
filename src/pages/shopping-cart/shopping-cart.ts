@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ProductModifPage } from '../product-modif/product-modif';
@@ -20,7 +20,7 @@ import { OrderProvider } from '../../providers/order/order';
 })
 export class ShoppingCartPage {
   items: any = []
-  statusOrder = false
+  statusOrder
   orderid
   answerData: any
   answerCheapest: any
@@ -30,6 +30,7 @@ export class ShoppingCartPage {
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
     public orderProvider: OrderProvider,
     private storage: Storage) {
 
@@ -53,6 +54,8 @@ export class ShoppingCartPage {
 
   ionViewWillEnter() {
     console.log("Switch to ShoppingCartPage");
+    this.statusOrder = false
+    this.orderid = null
     this.storage.get('productList').then((val) => {
       if (val) {
           this.items = val.list
@@ -147,6 +150,11 @@ export class ShoppingCartPage {
     console.log(this.answerClosest)
   }
   confirmOrder(store){
+    let alert = this.alertCtrl.create({
+      title: 'Perfecto!',
+      subTitle: 'Tu pedido llegará en unos minutos',
+      buttons: ['Ok']
+    });
     console.log(store)
     console.log(this.answerData)
     let newOrder = {
@@ -163,5 +171,21 @@ export class ShoppingCartPage {
     this.orderProvider.confirmOrder(newOrder).then((data)=>{
       console.log("Confirmación enviada")
     })
+    this.restartVars()
+    alert.present()
+  }
+  restartVars(){
+    this.items = null
+    this.statusOrder = null
+    this.orderid = null
+    this.answerData = null
+    this.answerCheapest = null
+    this.answerClosest = null
+    this.subscription = null
+    let orderStatus: any = {
+      status: false
+    }
+    this.statusOrder = false;
+    this.storage.set('order', orderStatus);
   }
 }
