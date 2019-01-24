@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { ProductModifPage } from '../product-modif/product-modif';
 import { OrderPage } from '../order/order';
 import { OrderProvider } from '../../providers/order/order';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the ShoppingCartPage page.
@@ -31,6 +32,7 @@ export class ShoppingCartPage {
     public modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
+    private userProvider: UserProvider,
     public orderProvider: OrderProvider,
     private storage: Storage) {
 
@@ -171,6 +173,7 @@ export class ShoppingCartPage {
     this.orderProvider.confirmOrder(newOrder).then((data)=>{
       console.log("Confirmación enviada")
     })
+    this.userProvider.addOrderProcess(newOrder)
     this.restartVars()
     alert.present()
   }
