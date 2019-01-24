@@ -4,6 +4,7 @@ import { AuthenticationProvider } from '../../providers/authentication/authentic
 import { AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { Storage } from '@ionic/storage';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the LoginPage page.
@@ -27,6 +28,7 @@ export class LoginPage {
     public navParams: NavParams,
     private authenticationProvider: AuthenticationProvider,
     private storage: Storage,
+    private userProvider: UserProvider,
     private alertCtrl: AlertController) {
     this.operation = 'login'
 
@@ -54,7 +56,7 @@ export class LoginPage {
       (data)=>{
         alert.present();
         console.log(data.user.uid)
-        let obj: any = {uid: data.user.uid, email: data.user.email}
+        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name}
         this.storage.set('user', obj);
         this.navCtrl.setRoot(TabsPage);
       }
@@ -92,10 +94,11 @@ export class LoginPage {
     this.authenticationProvider.registerWithEmail(this.email, this.password)
     .then(
       (data)=>{
-        let obj: any = {uid: data.user.uid, email: data.user.email}
+        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name}
         this.storage.set('user', obj);
         alert.present();
         console.log(data)
+        this.userProvider.add(obj)
       }
     ).catch(
       (error)=>{

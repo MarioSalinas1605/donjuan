@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
+
+/*
+  Generated class for the UserProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+@Injectable()
+export class UserProvider {
+
+  constructor(public http: HttpClient,
+  private angularFireDatabase: AngularFireDatabase) {
+    console.log('Hello UserProvider Provider');
+  }
+
+  add(user){
+    return this.angularFireDatabase.object('users/' + user.uid).set(user);
+  }
+
+}

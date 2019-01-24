@@ -28,6 +28,7 @@ import { ProductModifPage } from '../pages/product-modif/product-modif';
 import { NewProductPage } from '../pages/new-product/new-product';
 import { OrderPage } from '../pages/order/order';
 import { OrderProvider } from '../providers/order/order';
+import { UserProvider } from '../providers/user/user';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCMjs-827aomemKULQ5uFXuR_w06Higk0s",
@@ -88,7 +89,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductsProvider,
     AuthenticationProvider,
-    OrderProvider
+    OrderProvider,
+    UserProvider
   ]
 })
 export class AppModule {}
