@@ -25,6 +25,7 @@ export class ShoppingCartPage {
   answerData: any
   answerCheapest: any
   answerClosest: any
+  subscription: any
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -66,9 +67,7 @@ export class ShoppingCartPage {
         this.orderid = val.oid;
         if(this.statusOrder){
           console.log("Se tiene una orden en proceso")
-          setTimeout(() => {
-              this.getAnswers()
-          }, 5000);
+          this.getAnswers()
         }
       }
     })
@@ -106,7 +105,7 @@ export class ShoppingCartPage {
   }
   getAnswers(){
     console.log(`Searching order: ${this.orderid}`)
-    this.orderProvider.getList(this.orderid).valueChanges().subscribe((data)=>{
+    this.subscription = this.orderProvider.getList(this.orderid).valueChanges().subscribe((data)=>{
       console.log(data)
       this.answerData = data
       if(this.answerData.answers){
@@ -146,5 +145,23 @@ export class ShoppingCartPage {
     }
     console.log('The closest is: ')
     console.log(this.answerClosest)
+  }
+  confirmOrder(store){
+    console.log(store)
+    console.log(this.answerData)
+    let newOrder = {
+      sid: store.store.uid,
+      list: store.list,
+      price: store.totalPrice,
+      oid:store.oid,
+      user: this.answerData.user,
+      markerlatlong: this.answerData.markerlatlong
+    }
+    let orderid = this.answerData.id
+    this.subscription.unsubscribe()
+    this.orderProvider.delete(orderid)
+    this.orderProvider.confirmOrder(newOrder).then((data)=>{
+      console.log("Confirmación enviada")
+    })
   }
 }

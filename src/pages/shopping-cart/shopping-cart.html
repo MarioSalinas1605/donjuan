@@ -59,7 +59,7 @@
               <ion-label>{{item.name }} - ${{item.price}}</ion-label>
             </ion-item>
           </ion-list>
-          <button ion-button>Pedir</button>
+          <button ion-button (click)="confirmOrder(answerCheapest)">Pedir</button>
         </ion-card-content>
       </ion-card>
     </div>

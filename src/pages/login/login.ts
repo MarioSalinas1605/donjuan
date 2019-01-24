@@ -92,6 +92,8 @@ export class LoginPage {
     this.authenticationProvider.registerWithEmail(this.email, this.password)
     .then(
       (data)=>{
+        let obj: any = {uid: data.user.uid, email: data.user.email}
+        this.storage.set('user', obj);
         alert.present();
         console.log(data)
       }

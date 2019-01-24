@@ -23,4 +23,12 @@ export class OrderProvider {
     return this.angularFireDatabase.object('orders/'+orderId);
   }
 
+  confirmOrder(order){
+    return this.angularFireDatabase.object('stores/'+order.sid+'/process/'+order.oid).set(order);
+  }
+
+  delete(orderid){
+    return this.angularFireDatabase.object('orders/'+orderid).remove();
+  }
+
 }
