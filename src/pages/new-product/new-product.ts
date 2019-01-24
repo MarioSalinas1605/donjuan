@@ -41,78 +41,91 @@ export class NewProductPage {
      duration: 1500,
      position: 'top'
    });
-   this.storage.get('productList').then((val) => {
-     if (val) {
-         let item: any = {
+   if(this.verifyInputs()){
+     this.storage.get('productList').then((val) => {
+       if (val) {
+           let item: any = {
+             id: Date.now(),
+             name: this.name,
+             size: this.size,
+             quantity: this.quantity,
+             image: "../../assets/imgs/abarrotes.jpg",
+             category: 'basket'
+           }
+           val.list.push(item)
+           this.storage.set('productList', val);
+           // console.log(val)
+           // alert.present();
+       }else{
+         let obj: any = {status: 'pending', list:[{
            id: Date.now(),
            name: this.name,
            size: this.size,
            quantity: this.quantity,
            image: "../../assets/imgs/abarrotes.jpg",
            category: 'basket'
+         }]
          }
-         val.list.push(item)
-         this.storage.set('productList', val);
-         // console.log(val)
+         this.storage.set('productList', obj);
+         // console.log(obj)
          // alert.present();
-     }else{
-       let obj: any = {status: 'pending', list:[{
-         id: Date.now(),
-         name: this.name,
-         size: this.size,
-         quantity: this.quantity,
-         image: "../../assets/imgs/abarrotes.jpg",
-         category: 'basket'
-       }]
        }
-       this.storage.set('productList', obj);
-       // console.log(obj)
-       // alert.present();
-     }
-     toast.present();
-     this.viewCtrl.dismiss();
-   })
+       toast.present();
+       this.viewCtrl.dismiss();
+     })
+   }
  }
 
  pay(){
-   // this.storage.remove('productList').then(()=>{
-   //   console.log("Elements deleted")
-   // })
-
-   this.storage.get('productList').then((val) => {
-     if (val) {
-         let coca: any = {
+   if(this.verifyInputs()){
+     this.storage.get('productList').then((val) => {
+       if (val) {
+           let coca: any = {
+             id: Date.now(),
+             name: this.name,
+             size: this.size,
+             quantity: this.quantity,
+             image: "../../assets/imgs/abarrotes.jpg",
+             category: 'basket'
+           }
+           val.list.push(coca)
+           this.storage.set('productList', val);
+           console.log(val)
+           const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
+           tabsNav.select(1);
+           this.navCtrl.pop();
+       }else{
+         let obj: any = {status: 'pending', list:[{
            id: Date.now(),
            name: this.name,
            size: this.size,
            quantity: this.quantity,
            image: "../../assets/imgs/abarrotes.jpg",
            category: 'basket'
+         }]
          }
-         val.list.push(coca)
-         this.storage.set('productList', val);
-         console.log(val)
+         this.storage.set('productList', obj);
+         console.log(obj)
          const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
          tabsNav.select(1);
          this.navCtrl.pop();
-     }else{
-       let obj: any = {status: 'pending', list:[{
-         id: Date.now(),
-         name: this.name,
-         size: this.size,
-         quantity: this.quantity,
-         image: "../../assets/imgs/abarrotes.jpg",
-         category: 'basket'
-       }]
        }
-       this.storage.set('productList', obj);
-       console.log(obj)
-       const tabsNav = this.app.getNavByIdOrName('myTabsNav') as Tabs;
-       tabsNav.select(1);
-       this.navCtrl.pop();
-     }
-   })
+     })
+   }
 
+ }
+
+ verifyInputs(){
+   let toast = this.toastCtrl.create({
+     message: 'Selecciona el tamaño de tu producto',
+     duration: 1500,
+     position: 'top'
+   });
+   if(this.name && this.quantity && this.size){
+     return true
+   }
+   toast.present()
+   return false
  }
 
 }

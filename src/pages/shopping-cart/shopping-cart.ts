@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { ProductModifPage } from '../product-modif/product-modif';
@@ -28,6 +28,7 @@ export class ShoppingCartPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    private toastCtrl: ToastController,
     public orderProvider: OrderProvider,
     private storage: Storage) {
 
@@ -82,7 +83,16 @@ export class ShoppingCartPage {
     })
   }
   goToOrder(){
-    this.navCtrl.push(OrderPage)
+    let toast = this.toastCtrl.create({
+      message: 'Selcciona un producto antes',
+      duration: 1500,
+      position: 'top'
+    });
+    if(this.items.length > 0){
+      this.navCtrl.push(OrderPage)
+    }else{
+      toast.present()
+    }
   }
   stopSearch(){
     console.log(this.orderid)
