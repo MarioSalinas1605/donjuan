@@ -32,20 +32,20 @@ export class InformationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationPage');
-    this.storage.get('user').then((val) => {
-      if(val){
-        this.user = val
-      }
-    })
   }
 
   ionViewWillEnter(){
-    console.log(this.user)
-    this.userProvider.getOrderProcess(this.user.uid).valueChanges().subscribe((data)=>{
-      if(data){
-        this.list = data
+    this.storage.get('user').then((val) => {
+      if(val){
+        this.user = val
+        this.userProvider.getOrderProcess(this.user.uid).valueChanges().subscribe((data)=>{
+          if(data){
+            this.list = data
+          }
+        })
       }
     })
+    
   }
 
   logOut(){

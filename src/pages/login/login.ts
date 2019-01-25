@@ -62,10 +62,9 @@ export class LoginPage {
           if(udata){
             this.user = udata
             this.storage.set('user', this.user);
+            this.navCtrl.setRoot(TabsPage);
           }
         })
-
-        this.navCtrl.setRoot(TabsPage);
       }
     ).catch(
       (error)=>{
