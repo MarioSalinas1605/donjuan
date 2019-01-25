@@ -17,11 +17,19 @@ export class UserProvider {
   }
 
   add(user){
-    return this.angularFireDatabase.object('users/' + user.uid).set(user);
+    return this.angularFireDatabase.object('users/' + user.uid + '/information/').set(user);
+  }
+
+  get(uid){
+    return this.angularFireDatabase.object('users/' + uid + '/information/')
   }
 
   addOrderProcess(order){
     return this.angularFireDatabase.object('users/' + order.user.uid + '/process/' + order.oid).set(order)
+  }
+
+  getOrderProcess(uid){
+    return this.angularFireDatabase.object('users/' + uid + '/process/')
   }
 
 }

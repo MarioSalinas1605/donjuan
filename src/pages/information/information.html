@@ -14,34 +14,53 @@
 <ion-content>
   <ion-card>
 
-  <ion-card-header>
-    Perfil
-  </ion-card-header>
+    <ion-card-header>
+      Perfil
+    </ion-card-header>
 
-  <ion-card-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-4>
-          <img src="/assets/imgs/developer.png" alt="">
-        </ion-col>
-        <ion-col col-5>
-          <h2>Mario Salinas</h2>
-          <p>Tel: 2225079935</p>
-        </ion-col>
-        <ion-col col-3>
-          <button ion-button>Editar</button>
-          <button ion-button (click)="logOut()">Salir</button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col>
-          <h3>Dirección preferida:</h3>
-          <p>Rio Jamapa 6129</p>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="/assets/imgs/developer.png" alt="">
+          </ion-col>
+          <ion-col col-5>
+            <h2>Mario Salinas</h2>
+            <p>Tel: 2225079935</p>
+          </ion-col>
+          <ion-col col-3>
+            <button ion-button>Editar</button>
+            <button ion-button (click)="logOut()">Salir</button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col>
+            <h3>Dirección preferida:</h3>
+            <p>Rio Jamapa 6129</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
 
-</ion-card>
+  </ion-card>
+
+  <!-- <div *ngIf="list" *ngFor="let item of list">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          Pedido # {{item.oid}}
+        </ion-card-title>
+        <p>
+          Lista de productos:
+        </p>
+        <ion-list *ngFor="let item of item">
+          <ion-item>
+            <ion-label>{{item.name }} - ${{item.price}}</ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-label>Costo total: ${{item.price}}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
 
 </ion-content>

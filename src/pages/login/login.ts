@@ -24,6 +24,7 @@ export class LoginPage {
   email: string = ''
   password: string = ''
   password2: string = ''
+  user
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private authenticationProvider: AuthenticationProvider,
@@ -56,8 +57,14 @@ export class LoginPage {
       (data)=>{
         alert.present();
         console.log(data.user.uid)
-        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name}
-        this.storage.set('user', obj);
+        let subscription = this.userProvider.get(data.user.uid).valueChanges().subscribe((udata)=>{
+          console.log(udata)
+          if(udata){
+            this.user = udata
+            this.storage.set('user', this.user);
+          }
+        })
+
         this.navCtrl.setRoot(TabsPage);
       }
     ).catch(

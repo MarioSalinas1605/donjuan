@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthenticationProvider } from '../../providers/authentication/authentication';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { UserProvider } from '../../providers/user/user';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the InformationPage page.
@@ -17,15 +19,33 @@ import { LoginPage } from '../login/login';
   templateUrl: 'information.html',
 })
 export class InformationPage {
+  user: any
+  list: any
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   private authenticationProvider: AuthenticationProvider,
+  private userProvider: UserProvider,
+  private storage: Storage,
   private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InformationPage');
+    this.storage.get('user').then((val) => {
+      console.log(val)
+      if(val){
+        this.user = val
+        console.log(this.user)
+      }
+    })
+  }
+
+  ionViewWillEnter(){
+    console.log(this.user)
+    // this.userProvider.getOrderProcess(this.user.uid).valueChanges().subscribe((data)=>{
+    //   console.log(data)
+    // })
   }
 
   logOut(){
@@ -53,6 +73,5 @@ export class InformationPage {
         console.log(error)
       }
     )
-
   }
 }
