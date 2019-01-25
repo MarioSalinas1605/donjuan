@@ -29,7 +29,7 @@ export class UserProvider {
   }
 
   getOrderProcess(uid){
-    return this.angularFireDatabase.object('users/' + uid + '/process/')
+    return this.angularFireDatabase.list('users/' + uid + '/process/')
   }
 
 }

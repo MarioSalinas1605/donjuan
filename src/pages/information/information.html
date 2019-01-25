@@ -44,7 +44,7 @@
 
   </ion-card>
 
-  <!-- <div *ngIf="list" *ngFor="let item of list">
+  <div *ngFor="let item of list">
     <ion-card>
       <ion-card-content>
         <ion-card-title>
@@ -53,14 +53,19 @@
         <p>
           Lista de productos:
         </p>
-        <ion-list *ngFor="let item of item">
+        <ion-list *ngFor="let product of item.list">
           <ion-item>
-            <ion-label>{{item.name }} - ${{item.price}}</ion-label>
+            <ion-label>{{product.name }} - ${{product.price}}</ion-label>
           </ion-item>
         </ion-list>
         <ion-label>Costo total: ${{item.price}}</ion-label>
+        <ion-row>
+          <ion-col>
+            <ion-label color="secondary" text-right>Status: En proceso</ion-label>
+          </ion-col>
+        </ion-row>
       </ion-card-content>
     </ion-card>
-  </div> -->
+  </div>
 
 </ion-content>
