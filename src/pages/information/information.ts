@@ -5,6 +5,7 @@ import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { UserProvider } from '../../providers/user/user';
 import { Storage } from '@ionic/storage';
+import { RecordProvider } from '../../providers/record/record';
 
 /**
  * Generated class for the InformationPage page.
@@ -21,11 +22,13 @@ import { Storage } from '@ionic/storage';
 export class InformationPage {
   user: any
   list: any
+  listRecords: any
 
   constructor(public navCtrl: NavController,
   public navParams: NavParams,
   private authenticationProvider: AuthenticationProvider,
   private userProvider: UserProvider,
+  private recordProvider: RecordProvider,
   private storage: Storage,
   private alertCtrl: AlertController) {
   }
@@ -43,9 +46,15 @@ export class InformationPage {
             this.list = data
           }
         })
+        this.recordProvider.get(this.user.uid).valueChanges().subscribe((data)=>{
+          if(data){
+            this.listRecords = data
+            console.log(this.listRecords)
+          }
+        })
       }
     })
-    
+
   }
 
   logOut(){
