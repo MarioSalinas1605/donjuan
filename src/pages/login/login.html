@@ -23,6 +23,10 @@
       <ion-label fixed>Email</ion-label>
       <ion-input type="email" [(ngModel)]="email"></ion-input>
     </ion-item>
+    <ion-item *ngIf="operation === 'register'">
+      <ion-label fixed>Teléfono</ion-label>
+      <ion-input type="number" [(ngModel)]="number"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label fixed>Password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>

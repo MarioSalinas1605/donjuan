@@ -22,6 +22,7 @@ export class LoginPage {
   operation: string = 'login';
   name: string = ''
   email: string = ''
+  number: number
   password: string = ''
   password2: string = ''
   user
@@ -90,6 +91,7 @@ export class LoginPage {
     let person = {
       name: this.name,
       email: this.email,
+      number: this.number,
       address: ''
     }
 
@@ -100,7 +102,7 @@ export class LoginPage {
     this.authenticationProvider.registerWithEmail(this.email, this.password)
     .then(
       (data)=>{
-        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name}
+        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name, number: this.number}
         this.storage.set('user', obj);
         alert.present();
         console.log(data)
