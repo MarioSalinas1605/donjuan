@@ -30,6 +30,7 @@ import { OrderPage } from '../pages/order/order';
 import { OrderProvider } from '../providers/order/order';
 import { UserProvider } from '../providers/user/user';
 import { RecordProvider } from '../providers/record/record';
+import { EditUserPage } from '../pages/edit-user/edit-user';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCMjs-827aomemKULQ5uFXuR_w06Higk0s",
@@ -55,7 +56,8 @@ export const firebaseConfig = {
     CoverPage,
     ProductModifPage,
     NewProductPage,
-    OrderPage
+    OrderPage,
+    EditUserPage
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ export const firebaseConfig = {
     CoverPage,
     ProductModifPage,
     NewProductPage,
-    OrderPage
+    OrderPage,
+    EditUserPage
   ],
   providers: [
     StatusBar,

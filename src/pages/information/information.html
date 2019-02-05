@@ -18,27 +18,27 @@
       Perfil
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content *ngIf="user">
       <ion-grid>
         <ion-row>
           <ion-col col-4>
             <img src="/assets/imgs/developer.png" alt="">
           </ion-col>
           <ion-col col-5>
-            <h2>Mario Salinas</h2>
-            <p>Tel: 2225079935</p>
+            <h2>{{user.name}}</h2>
+            <p>Tel: {{user.number}}</p>
           </ion-col>
           <ion-col col-3>
-            <button ion-button>Editar</button>
+            <button ion-button (click)="sendtToEdit(user)">Editar</button>
             <button ion-button (click)="logOut()">Salir</button>
           </ion-col>
         </ion-row>
-        <ion-row>
+        <!-- <ion-row>
           <ion-col col>
             <h3>Dirección preferida:</h3>
             <p>Rio Jamapa 6129</p>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
       </ion-grid>
     </ion-card-content>
 
