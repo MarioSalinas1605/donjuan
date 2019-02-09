@@ -88,33 +88,70 @@ export class LoginPage {
       buttons: ['Ok']
     });
 
-    let person = {
-      name: this.name,
-      email: this.email,
-      number: this.number,
-      address: ''
-    }
-
-    if (this.password == this.password2) {
-        console.log(person)
-    }
-
-    this.authenticationProvider.registerWithEmail(this.email, this.password)
-    .then(
-      (data)=>{
-        let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name, number: this.number}
-        this.storage.set('user', obj);
-        alert.present();
-        console.log(data)
-        this.userProvider.add(obj)
+    if(this.verifydata()){
+      let person = {
+        name: this.name,
+        email: this.email,
+        number: this.number,
+        address: ''
       }
-    ).catch(
-      (error)=>{
-        alertError.present();
-        console.log(error)
-      }
-    )
 
+      this.authenticationProvider.registerWithEmail(this.email, this.password)
+      .then(
+        (data)=>{
+          let obj: any = {uid: data.user.uid, email: data.user.email, name: this.name, number: this.number}
+          this.storage.set('user', obj);
+          alert.present();
+          console.log(data)
+          this.userProvider.add(obj)
+        }
+      ).catch(
+        (error)=>{
+          alertError.present();
+          console.log(error)
+        }
+      )
+    }
+  }
+
+  verifydata(){
+    let alertPassword = this.alertCtrl.create({
+      title: 'Verificar',
+      subTitle: 'Las contraseñas deben ser iguales',
+      buttons: ['Ok']
+    });
+
+    let alertInput = this.alertCtrl.create({
+      title: 'Verificar',
+      subTitle: 'Completa todos los campos',
+      buttons: ['Ok']
+    });
+
+    if (this.password != this.password2) {
+        alertPassword.present()
+        return false;
+    }
+    if(this.password==''){
+      alertInput.present()
+      return false;
+    }
+    if(this.password2==''){
+      alertInput.present()
+      return false;
+    }
+    if(this.email==''){
+      alertInput.present()
+      return false;
+    }
+    if(this.name == ''){
+      alertInput.present()
+      return false;
+    }
+    if(this.number == null){
+      alertInput.present()
+      return false;
+    }
+    return true;
   }
 
 }
