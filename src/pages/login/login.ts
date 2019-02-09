@@ -52,6 +52,21 @@ export class LoginPage {
       subTitle: 'Hubo un error',
       buttons: ['Ok']
     });
+    let alertInput = this.alertCtrl.create({
+      title: 'Verificar',
+      subTitle: 'Completa todos los campos',
+      buttons: ['Ok']
+    });
+
+
+    if(this.password==''){
+      alertInput.present()
+      return false;
+    }
+    if(this.email==''){
+      alertInput.present()
+      return false;
+    }
 
     this.authenticationProvider.loginWithEmail(this.email, this.password)
     .then(
