@@ -31,6 +31,12 @@ export class ProductsProvider {
     return this.products.filter((product)=>{ return product.category == 'grocery' })
     // return this.afDB.list('/products/grocery')
   }
+  getGroceriesfb(){
+    return this.afDB.list('products/grocery/')
+  }
+  getFreshfb(){
+    return this.afDB.list('products/fresh/')
+  }
   getFresh(){
     return this.products.filter((product)=>{ return product.category == 'fresh' })
   }

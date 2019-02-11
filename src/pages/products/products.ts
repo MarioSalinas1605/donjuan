@@ -22,7 +22,10 @@ export class ProductsPage {
   groceries: any = {}
   fresh: any = {}
   categories: string = ''
-  constructor(public navCtrl: NavController, public navParams: NavParams, public productsProvider: ProductsProvider, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public productsProvider: ProductsProvider,
+    public modalCtrl: ModalController) {
     this.groceries = productsProvider.getGroceries()
     this.fresh = productsProvider.getFresh()
     this.categories='groceries'
@@ -30,6 +33,12 @@ export class ProductsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
+    this.productsProvider.getGroceriesfb().valueChanges().subscribe((val)=>{
+      this.groceries = val
+    })
+    this.productsProvider.getFreshfb().valueChanges().subscribe(val=>{
+      this.fresh = val
+    })
   }
 
   presentModal(item, category) {
