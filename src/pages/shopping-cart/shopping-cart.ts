@@ -113,7 +113,7 @@ export class ShoppingCartPage {
     this.subscription = this.orderProvider.getList(this.orderid).valueChanges().subscribe((data)=>{
       console.log(data)
       this.answerData = data
-      if(this.answerData.answers){
+      if(data && this.answerData.answers){
         this.searchCheapest();
         this.searchClosest()
       }
@@ -160,7 +160,7 @@ export class ShoppingCartPage {
     console.log(store)
     console.log(this.answerData)
     let newOrder = {
-      sid: store.store.uid,
+      sid: store.store.id,
       list: store.list,
       price: store.totalPrice,
       oid:store.oid,
